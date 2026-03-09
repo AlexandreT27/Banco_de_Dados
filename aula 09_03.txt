@@ -1,0 +1,88 @@
+
+Setting environment for using XAMPP for Windows.
+aluno@LAB3-14 c:\xampp
+# mysql -hlocalhost -uroot -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [(none)]> CREATE DATABASE loja_pdv;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| loja_pdv           |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> use loja_pdv;
+Database changed
+MariaDB [loja_pdv]> create table cliente(cod_cli smallint not null,nome_cli varchar(40)not null,endereco varchar(40)null,cidade varchar(20)null, cep char(08)null,uf char(02)null,primary key(cod_cli));
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [loja_pdv]> show tables;
++--------------------+
+| Tables_in_loja_pdv |
++--------------------+
+| cliente            |
++--------------------+
+1 row in set (0.001 sec)
+
+MariaDB [loja_pdv]> insert into cliente(cod_cli,nome_cli,endereco,cidade,dep,uf) values (1000,'SupermercadoCarrefour','Av. das Americas','rio de janeiro','20000001','rj'),(2000,'Supermercado Baratao','Rua 7 de setembro','rio de janeiro','20000002','rj'),(3000,'Suepermercado Arariboia','Rua Itaoca','niteroi','20000003','rj');
+ERROR 1054 (42S22): Unknown column 'dep' in 'field list'
+MariaDB [loja_pdv]> select * from cliente;
+Empty set (0.001 sec)
+
+MariaDB [loja_pdv]> desc cliente;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| cod_cli  | smallint(6) | NO   | PRI | NULL    |       |
+| nome_cli | varchar(40) | NO   |     | NULL    |       |
+| endereco | varchar(40) | YES  |     | NULL    |       |
+| cidade   | varchar(20) | YES  |     | NULL    |       |
+| cep      | char(8)     | YES  |     | NULL    |       |
+| uf       | char(2)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.041 sec)
+
+
+MariaDB [loja_pdv]> insert into cliente(cod_cli,nome_cli,endereco,cidade,cep,uf) values (1000,'SupermercadoCarrefour','Av. das Americas','rio de janeiro','20000001','rj'),(2000,'Supermercado Baratao','Rua 7 de setembro','rio de janeiro','20000002','rj'),(3000,'Supermercado Arariboia','Rua Itaoca','niteroi','20000003','rj');
+Query OK, 3 rows affected (0.013 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [loja_pdv]> select*from cliente;
++---------+------------------------+-------------------+----------------+----------+------+
+| cod_cli | nome_cli               | endereco          | cidade         | cep      | uf   |
++---------+------------------------+-------------------+----------------+----------+------+
+|    1000 | SupermercadoCarrefour  | Av. das Americas  | rio de janeiro | 20000001 | rj   |
+|    2000 | Supermercado Baratao   | Rua 7 de setembro | rio de janeiro | 20000002 | rj   |
+|    3000 | Supermercado Arariboia | Rua Itaoca        | niteroi        | 20000003 | rj   |
++---------+------------------------+-------------------+----------------+----------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [loja_pdv]>
