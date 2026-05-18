@@ -9,7 +9,7 @@ CREATE TABLE Aluno(
     idade INT
 );
 
-INSERT INTO Aluno (nome, curso, idade) VALUES ('Thiago', 'Desenvolvimento de Sistema', '32'),('João', 'ADM', '34');
+INSERT INTO Aluno (nome, curso, idade) VALUES ('Thiago', 'Desenvolvimento de Sistema', '22'),('João', 'ADM', '34'),('Pedro', 'RH', '32'), ('Henrique', 'Robotica', '18');
 
 SELECT * FROM Aluno WHERE idade >=18;
 
